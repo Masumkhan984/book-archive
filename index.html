@@ -7,16 +7,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <title>Document</title>
+    <title>My web site</title>
 </head>
 
 <body>
-    <h1>Hello assignment</h1>
+    <!-- searching section -->
+    <section class="container">
+        <h1 class="text-primary text-center mt-4">Search Your Book to Read</h1>
+        <div class="input-group mb-3">
+            <!-- searching input -->
+            <input id="search-field" type="text" class="w-75 p-3 form-control"
+                placeholder="search your favourite books here" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <!-- book search Button -->
+            <button onclick="searchBook()" class="btn btn-outline-secondary" type="button"
+                id="button-addon2">Button</button>
+        </div>
+    </section>
+    <section class="container mx-auto">
+        <div id="book-display" class="row row-cols-3 row-cols-md-3 g-4">
+
+        </div>
+    </section>
 
     <script src="index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
