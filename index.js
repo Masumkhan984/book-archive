@@ -45,6 +45,7 @@ const displayBook = books => {
         </div>`;
         showBooks.appendChild(div);
     })
+    //number showing
     const numbers = document.getElementById('books-number')
     const div = document.createElement('div')
     div.innerHTML = `<h2>The book number found${books.length}</h2>`;
