@@ -1,44 +1,53 @@
+// get error line 
+const errorDiv = document.getElementById('error')
+
+
+//search book function
 const searchBook = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     //clear data
     searchField.value = '';
     if (searchText === '') {
-        console.log('nothing to search')
+        errorDiv.innerHTML = `<h2>Search Text Can not be Empty</h2>`;
+        return;
     }
     else {
         //load data
         const url = `https://openlibrary.org/search.json?q=${searchText}`
-        try {
-            fetch(url)
-                .then(res => res.json())
-                .then(data => displayBook(data.docs))
-        }
-        catch (error) {
-            console.log(error);
-        }
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displayBook(data.docs))
     }
 }
+
+// display books function
 const displayBook = books => {
-    const showBooks = document.getElementById('book-display')
-    if (books.length === 0) {
-        //nothing found
+    //clear error line
+    if (books === "Not Found") {
+        errorDiv.innerText = `<h2> NO Result found</h2>`
     }
+    else {
+        errorDiv.innerText = "";
+    }
+    const showBooks = document.getElementById('book-display');
     books.forEach(book => {
         const div = document.createElement('div')
         div.classList.add('col')
         div.innerHTML = `
         <div class="card"
-        <img src="${book.cover_i}" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">${book.title}</h5>
-            <p class="card-text">${book.author_name[0]}.</p>
-            <p class="card-text">${book.publish_year[0]}.</p>
+        <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg">
+            <h4 class="card-title">${book.title}</h4>
+            <p class="card-text">${book.author_name}</p>
+            <p class="card-text">First Published:${book.publish_year}</p>
         </div>
         </div>`;
         showBooks.appendChild(div);
-
-        const foundedBooks = book;
-        console.log(foundedBooks)
     })
+    const numbers = document.getElementById('books-number')
+    const div = document.createElement('div')
+    div.innerHTML = `<h2>The book number found${books.length}</h2>`;
+    numbers.appendChild(div)
+
 }
